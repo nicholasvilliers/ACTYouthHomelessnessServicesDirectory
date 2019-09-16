@@ -2,30 +2,262 @@
     ViewBag.Title = "Home Page";
 }
 
+<!--Bootstrap carousel scripts and links-->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h2>Home</h2>
+    <p>The ACT Youth Homelessness Services Directory is a resource which young people in the ACT, who find themselves homeless or at risk of becoming homeless can find services to help them in their time of need.</p>
+    <p>The map below can be used to find services which are close to you.</p>
+    <!--code for google map-->
+
+    <h3>Services near me</h3>
+    <div id="map"></div>
+
+    <!--The div element for the map -->
+    <!--Script for map-->
+    <script>
+        // Note: This example requires that you consent to location sharing when
+        // prompted by your browser. If you see the error "The Geolocation service
+        // failed.", it means you probably did not give permission for the browser to
+        // locate you.
+        var map, infoWindow;
+        /*initiate map*/
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                /*automatically centre map on canberra cbd, if location tracking not permitted by user*/
+                center: { lat: -35.279097, lng: 149.126367 },
+                zoom: 12
+            });
+            infoWindow = new google.maps.InfoWindow;
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('You are here.');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXq96VjA3ovASTp9u95xIFoNifTgSZWFk&callback=initMap">
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--Category links carousel-->
+    <div>
+
+        <script>
+            $(document).ready(function () {
+                var itemsMainDiv = ('.MultiCarousel');
+                var itemsDiv = ('.MultiCarousel-inner');
+                var itemWidth = "";
+
+                $('.leftLst, .rightLst').click(function () {
+                    var condition = $(this).hasClass("leftLst");
+                    if (condition)
+                        click(0, this);
+                    else
+                        click(1, this)
+                });
+
+                ResCarouselSize();
+
+
+
+
+                $(window).resize(function () {
+                    ResCarouselSize();
+                });
+
+                //this function define the size of the items
+                function ResCarouselSize() {
+                    var incno = 0;
+                    var dataItems = ("data-items");
+                    var itemClass = ('.item');
+                    var id = 0;
+                    var btnParentSb = '';
+                    var itemsSplit = '';
+                    var sampwidth = $(itemsMainDiv).width();
+                    var bodyWidth = $('body').width();
+                    $(itemsDiv).each(function () {
+                        id = id + 1;
+                        var itemNumbers = $(this).find(itemClass).length;
+                        btnParentSb = $(this).parent().attr(dataItems);
+                        itemsSplit = btnParentSb.split(',');
+                        $(this).parent().attr("id", "MultiCarousel" + id);
+
+
+                        if (bodyWidth >= 1200) {
+                            incno = itemsSplit[3];
+                            itemWidth = sampwidth / incno;
+                        }
+                        else if (bodyWidth >= 992) {
+                            incno = itemsSplit[2];
+                            itemWidth = sampwidth / incno;
+                        }
+                        else if (bodyWidth >= 768) {
+                            incno = itemsSplit[1];
+                            itemWidth = sampwidth / incno;
+                        }
+                        else {
+                            incno = itemsSplit[0];
+                            itemWidth = sampwidth / incno;
+                        }
+                        $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
+                        $(this).find(itemClass).each(function () {
+                            $(this).outerWidth(itemWidth);
+                        });
+
+                        $(".leftLst").addClass("over");
+                        $(".rightLst").removeClass("over");
+
+                    });
+                }
+
+
+                //this function used to move the items
+                function ResCarousel(e, el, s) {
+                    var leftBtn = ('.leftLst');
+                    var rightBtn = ('.rightLst');
+                    var translateXval = '';
+                    var divStyle = $(el + ' ' + itemsDiv).css('transform');
+                    var values = divStyle.match(/-?[\d\.]+/g);
+                    var xds = Math.abs(values[4]);
+                    if (e == 0) {
+                        translateXval = parseInt(xds) - parseInt(itemWidth * s);
+                        $(el + ' ' + rightBtn).removeClass("over");
+
+                        if (translateXval <= itemWidth / 2) {
+                            translateXval = 0;
+                            $(el + ' ' + leftBtn).addClass("over");
+                        }
+                    }
+                    else if (e == 1) {
+                        var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
+                        translateXval = parseInt(xds) + parseInt(itemWidth * s);
+                        $(el + ' ' + leftBtn).removeClass("over");
+
+                        if (translateXval >= itemsCondition - itemWidth / 2) {
+                            translateXval = itemsCondition;
+                            $(el + ' ' + rightBtn).addClass("over");
+                        }
+                    }
+                    $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
+                }
+
+                //It is used to get some elements from btn
+                function click(ell, ee) {
+                    var Parent = "#" + $(ee).parent().attr("id");
+                    var slide = $(Parent).attr("data-slide");
+                    ResCarousel(ell, Parent, slide);
+                }
+
+            });
+        </script>
+        <h3>Services | <button>See All</button></h3>
+        <div class="row">
+            <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel" data-interval="1000">
+                <div class="MultiCarousel-inner">
+                    <div class="item">
+                        <div class="pad15">
+                            <a href="~/Home/legalfinancial/">
+                                <p class="lead">Legal and Financial</p>
+                                <img class="slider-icon" id="legalfinancial" src="~/Images/legalfinancialicon.png" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="pad15">
+                            <a href="~/Home/diversityinclusion/">
+                                <p class="lead">Diversity and Inclusion</p>
+                                <img class="slider-icon" id="diversityinclusion" src="~/Images/diversityinclusion.png" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="pad15">
+                            <a href="~/Home/healthwellbeing/">
+                                <p class="lead">Health and Wellbeing</p>
+                                <img class="slider-icon" id="healthwellbeing" src="~/Images/healthwellbeing.png" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="pad15">
+                            <a href="~/Home/jobsemployment/">
+                                <p class="lead">Jobs and Employment</p>
+                                <img class="slider-icon" id="jobsemployment" src="~/Images/jobsemployment.png" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="pad15">
+                            <a href="~/Home/familycommunity/">
+                                <p class="lead">Family and Community</p>
+                                <img class="slider-icon" id="familycommunity" src="~/Images/familycommunity.png" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="pad15">
+                            <a href="~/Home/shelter">
+                                <p class="lead">Shelter</p>
+                                <img class="slider-icon" id="shelter" src="~/Images/shelterIcon.png" />
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="pad15">
+                            <a href="~/Home/mealsandfood/">
+                                <p class="lead">Meals and Food</p>
+                                <img class="slider-icon" id="mealsfood" src="~/Images/mealsfoodicon.png" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+

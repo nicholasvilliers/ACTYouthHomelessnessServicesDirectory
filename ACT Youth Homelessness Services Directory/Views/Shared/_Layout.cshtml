@@ -1,6 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147750347-1"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-147750347-1');
+    </script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -11,27 +21,52 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+                <!--Logo for header-->
+                <!--<img src="~/Images/Logo.png" class="logo" />-->
+                <!--Put page title in its own DIV-->
+                <h1 class="title"><img src="~/Images/Logo.png" class="logo"/>ACT Youth Homelessness Services Directory</h1>
+                <!--Button for hamburger menu, when in tablet and mobile viewports-->
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>    
+                    <li>@Html.ActionLink("Services", "Services", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
             </div>
         </div>
     </div>
+    <br />
+    <br />
+    <br />
+    <br />
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - <a href="https://northside.asn.au/">Northside Community Service</a></p>
+            <ul>
+                <li class="social">
+                    <a href="https://www.facebook.com/YEngageNCS"><img class="social-logo" src="~/Images/SocialMedia/facebook.png"/>Find us on Facebook</a>
+                </li>
+                <li class="social">
+                    <a href="https://twitter.com/YEngageNCS"><img class="social-logo" src="~/Images/SocialMedia/twitter.png"/>Follow us on Twitter</a>
+                </li>
+                <li class="social">
+                    <a href="https://www.instagram.com/YEngageNCS/"><img class="social-logo" src="~/Images/SocialMedia/instagram.png" />Follow us on Instagram</a>
+                </li>
+                <li class="social">
+                    <a href="https://www.linkedin.com/company/northside-community-service/"><img class="social-logo" src="~/Images/SocialMedia/linkedin.png"/>Follow us on LinkedIn</a>
+                </li>
+            </ul>
         </footer>
     </div>
 

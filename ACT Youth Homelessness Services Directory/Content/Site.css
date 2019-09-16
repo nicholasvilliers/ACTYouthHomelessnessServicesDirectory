@@ -2,11 +2,166 @@
     padding-top: 50px;
     padding-bottom: 20px;
 }
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+/*Set properties of list items in services type/location pages*/
+.services-type {
+    list-style: none;
+    display: inline-block;
+    width: 100%;
+}
+/*set properties of map container(<div>)*/
+#map {
+    height: 70vh; /* The height is 70% of the height of the screen so that the entire map can be see, aswell as some controls above and below it. */
+    width: 100%; /* The width is the width of the web page */
+    border:1px solid #000;
+}
+/*set properties of social media links in footer*/
+.social{
+    list-style:none;
+    display:inline-block;
+    width:45%;
+    margin:2%;
+
+}
+.social-logo{
+    width:10%;
+
+}
+/*set background colours for category links in slider*/
+#mealsfood {
+    background-color: #00FF00;
+}
+
+#shelter {
+    background-color: #B5651D;
+}
+
+#legalfinancial {
+    background-color: #1111FF;
+}
+
+#diversityinclusion {
+    background-color: #CC00CC;
+}
+
+#healthwellbeing {
+    background-color: #FF0000;
+}
+
+#jobsemployment {
+    background-color: #FFAAAA;
+}
+
+#familycommunity {
+    background-color: #AAAAAA;
+}
+/*set properties form enitre category icons list*/
+ul.slider {
+    width: 100%;
+}
+.services-type-text {
+    background-color: #FFFFFF;
+    display: inline-block;
+    width: 70%;
+    height: 100px;
+    margin: 0;
+    vertical-align: top;
+    right: 0;
+}
+
+.services-type-logo {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    right: 0;
+    vertical-align: central;
+    margin: 0.2vw;
+}
+
+.services-type-listitem {
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    align-content: center;
+    margin-bottom: 1vw;
+}
+/*Set properties for category links carousel*/
+.MultiCarousel {
+    float: left;
+    overflow: hidden;
+    padding: 15px;
+    width: 100%;
+    position: relative;
+
+}
+
+.MultiCarousel .MultiCarousel-inner {
+    transition: 1s ease all;
+    float: left;
+}
+
+        .MultiCarousel .MultiCarousel-inner .item {
+            float: left;
+        }
+
+            .MultiCarousel .MultiCarousel-inner .item > div {
+                text-align: center;
+                padding: 10px;
+                margin: 10px;
+                background: #f1f1f1;
+                color: #666;
+            }
+
+    .MultiCarousel .leftLst, .MultiCarousel .rightLst {
+        position: absolute;
+        border-radius: 50%;
+        top: calc(50% - 20px);
+    }
+
+    .MultiCarousel .leftLst {
+        left: 0;
+    }
+
+    .MultiCarousel .rightLst {
+        right: 0;
+    }
+
+        .MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over {
+            pointer-events: none;
+            background: #ccc;
+        }
+/*properties of carousel items*/
+.item {
+    height: 250px;
+    background-color: #FFF000
+    ;
+
+
+}
+
+.pad15 {
+    text-align: center;
+    align-content: center;
+    height: 200px;
+    background-color: #990099 !important;
+    border: 2px solid #000000;
+}
+/*properties of text in carousel links*/
+.lead {
+    color: #FFF000;
+    font-weight: 900;
+}
+/*properties of carousel buttons*/
+btn btn-primary leftLst {
+    background-color: #FFF000;
+}
+
+btn btn-primary rightLst {
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -14,6 +169,18 @@
 */
 .dl-horizontal dt {
     white-space: normal;
+/*set properties for list items which contain category links in slider*/
+}
+.slider{
+     display:inline;
+     width:100%;
+ }
+ /*set properties form category icons input slider*/
+img.slider-icon {
+    width:100px;
+    height:100px;
+    margin:0;
+    border:2px solid black;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -22,3 +189,133 @@ select,
 textarea {
     max-width: 280px;
 }
+/*set the properties of objects in the contact us form*/
+
+.title {
+    font-size: 16px;
+    color: #990099 !important;
+}
+}
+/*Set properties of address search bar*/
+fieldset{
+    width:100%;
+}
+input{
+
+}
+/*Set properties of nav link items(menu links)*/
+li{
+    width: 25%;
+    color: #991199;
+}
+.title{
+    float:left;
+    display:inline;
+    width:80vw;
+    font-size:15px;
+    margin:1vw;
+}
+navbar-collapse collapse{
+    float:left;
+    display:inline;
+    width:9vw;
+}
+navbar-toggle{
+    width:4vw;
+    display:inline-block;
+
+}
+/*manually make navbar yellow*/
+.navbar-inverse {
+    background-color: #FFF000 !important;
+}
+
+a.mynav {
+    background-color: #FFF000 !important;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
+    color: #990099 !important;
+}
+/* end of yellow navbar*/ 
+/*Set properties of Logo in header*/
+.logo{
+    display:none;
+}
+/*----------------------------------------------------------------------------------------------------------------------*/
+/*Smaller Tablet Viewport*/
+/*----------------------------------------------------------------------------------------------------------------------*/
+@media only screen and (min-width:501px) and (max-width: 700px) {
+    .title {
+        font-size: 20px;
+        width: 87vw;
+    }
+
+    .logo {
+        display: inline;
+        width: 6vw;
+        margin: 0 1vw 0 0;
+    }
+    .social {
+        list-style: none;
+        display: inline-block;
+        width: 47%;
+        margin: 1%
+    }
+
+    .social-logo {
+        width: 10%;
+    }
+}
+/*----------------------------------------------------------------------------------------------------------------------*/
+/*Larger Tablet viewport*/
+/*----------------------------------------------------------------------------------------------------------------------*/
+@media only screen and (min-width:701px) and (max-width: 1000px) {
+    .title {
+        font-size:28px;
+        width: 87vw;
+    }
+    .logo {
+        display: inline;
+        width: 6vw;
+        margin: 0 1vw 0 0;
+    }
+    .social {
+        list-style: none;
+        display: inline-block;
+        width: 47%;
+        margin:1%
+    }
+
+    .social-logo {
+        width: 5%;
+    }
+}
+/*----------------------------------------------------------------------------------------------------------------------*/
+/*Desktop viewport*/
+/*----------------------------------------------------------------------------------------------------------------------*/
+@media only screen and (min-width: 1001px) {
+    .title{
+        font-size:38px;
+        width: 100vw;
+    }
+    .logo{
+        display:inline;
+        width:3vw;
+        margin:0 1vw 0 0;
+    }
+    .navbar navbar-inverse navbar-fixed-top {
+        height: 2vw;
+    }
+    .social {
+        list-style: none;
+        display: inline-block;
+        width: 22%;
+        margin: 1%
+    }
+
+    .social-logo {
+        width: 10%;
+    }
+}
+

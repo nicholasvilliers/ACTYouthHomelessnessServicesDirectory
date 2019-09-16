@@ -45,10 +45,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=2.3.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.2.3.1.6\lib\net46\MailKit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MimeKit, Version=2.3.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.2.3.1\lib\net46\MimeKit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -130,9 +147,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ServicesClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ServicesDB.mdf" />
+    <Content Include="App_Data\ServicesDB_log.ldf">
+      <DependentUpon>ServicesDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -140,7 +162,24 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\site.css" />
+    <Content Include="Images\belconnen.jpg" />
+    <Content Include="Images\civic.jpg" />
+    <Content Include="Images\diversityinclusion.png" />
+    <Content Include="Images\familycommunity.png" />
+    <Content Include="Images\gungahlin.jpg" />
+    <Content Include="Images\healthwellbeing.png" />
+    <Content Include="Images\jobsemployment.png" />
+    <Content Include="Images\legalfinancialicon.png" />
+    <Content Include="Images\mealsfoodicon.png" />
+    <Content Include="Images\Logo.png" />
+    <Content Include="Images\sheltericon.png" />
+    <Content Include="Images\SocialMedia\facebook.png" />
+    <Content Include="Images\SocialMedia\instagram.png" />
+    <Content Include="Images\SocialMedia\linkedin.png" />
+    <Content Include="Images\SocialMedia\twitter.png" />
+    <Content Include="Images\tuggeranong.JPG" />
+    <Content Include="Images\woden.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -166,25 +205,39 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Services.cshtml" />
+    <Content Include="Views\_ViewImports.cshtml" />
+    <Content Include="Views\Home\shelter.cshtml" />
+    <Content Include="Views\Home\legalfinancial.cshtml" />
+    <Content Include="Views\Home\diversityinclusion.cshtml" />
+    <Content Include="Views\Home\healthwellbeing.cshtml" />
+    <Content Include="Views\Home\jobsemployment.cshtml" />
+    <Content Include="Views\Home\familycommunity.cshtml" />
+    <Content Include="Views\Home\mealsandfood.cshtml" />
+    <Content Include="Views\Home\editServices.cshtml" />
+    <Content Include="Views\Home\belconnen.cshtml" />
+    <Content Include="Views\Home\gungahlin.cshtml" />
+    <Content Include="Views\Home\woden.cshtml" />
+    <Content Include="Views\Home\tuggeranong.cshtml" />
+    <Content Include="Views\Home\civic.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
